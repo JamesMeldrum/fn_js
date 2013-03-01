@@ -18,3 +18,7 @@ TODO
   * Applicative Functors
   * Higher Order Functions
   * Typeclasses
+
+Requirements
+====
+  * Node.js
