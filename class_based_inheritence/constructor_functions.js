@@ -11,7 +11,8 @@
   
   // 'new' keyword with class
   // constructor function
-  // Don't do this:
+  // Don't do this: var alice = Person('alice'). Will inject contents of Person
+  // into the global namespace
 
   var alice = new Person('alice');
 

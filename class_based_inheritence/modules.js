@@ -1,10 +1,18 @@
-// implemting classes
-// TODO: Add class method inheritance. Consider working hasOwnProperty checks
+// Once include and extend methods have been added, including modules
+// is simply a matter of building objects of functions and passing them
+// to the class prior to instance instantiation. No native way to manage imports.
+// TODO: Package management. Require.js?
 
 (function () {
 
   'use strict';
-  
+
+  var ORMModule = {
+    save: function(){
+      console.log("ORMModule.save called");
+    }
+  };
+
   var Class = function(parent){
     var klass = function(){
       console.log(arguments);
@@ -57,46 +65,14 @@
 
     return klass;
   };
-
+  
   var Person = new Class();
+  var Asset = new Class();
 
-  Person.prototype.init = function(arg1,arg2){
-    console.log("Person instantiated", arg1, arg2);
-  };
-
-  Person.class_function = function(arg){
-    console.log("Class function called");
-  };
-
-  Person.prototype.class_function = Person.class_function;
-
-  Person.prototype.method = function(arg){
-    console.log("Method called");
-  };
-
-  // Attach class methods
-  Person.extend({
-    find: function(id) { console.log("find class method called"); },
-    exists: function(id) { console.log("find called"); }
-  });
-
-  // Attach instance methods
-  Person.include({
-    find: function(id) { console.log("find instance method called"); },
-    exists: function(id) { console.log("find called"); }
-  });
+  Person.include(ORMModule);
 
   var person = new Person();
-  person.class_function();                        // No calling classmethods from instances 
-                                                  // unless they're bound internally
-                                                  // as from line 65
-  person.method();
-  Person.find(); // Calling 
-  person.find();
-
-  var Programmer = new Class(Person);
-  var programmer = new Programmer();
-  //Programmer.find(); // Does not inherit class methods
-  programmer.find();
+  person.save();
 
 }());
+
