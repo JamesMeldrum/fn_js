@@ -74,6 +74,11 @@
     console.log("Method called");
   };
 
+  var _private_method = function(){ console.log("private method called"); }; // No real concept of
+                                                                             // private methods.
+                                                                             // Emulation through
+                                                                             // separate contexts
+
   // Attach class methods
   Person.extend({
     find: function(id) { console.log("find class method called"); },
@@ -82,6 +87,7 @@
 
   // Attach instance methods
   Person.include({
+    public_caller: _private_method,
     find: function(id) { console.log("find instance method called"); },
     exists: function(id) { console.log("find called"); }
   });
@@ -93,10 +99,11 @@
   person.method();
   Person.find(); // Calling 
   person.find();
+  person.public_caller();
 
   var Programmer = new Class(Person);
   var programmer = new Programmer();
-  //Programmer.find(); // Does not inherit class methods
+  //Programmer.find(); // Does not inherit class methods yet
   programmer.find();
 
 }());
