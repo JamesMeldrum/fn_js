@@ -2,7 +2,7 @@
 
   'use strict';
 
-  (function (bp) {
+  (function () {
     console.log("annonymous function");
   }());
 
